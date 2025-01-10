@@ -1,0 +1,144 @@
+openapi: 3.0.0
+info:
+  title: Blog API
+  description: API for managing blog posts with tags
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000/api
+    description: Local development server
+paths:
+  /posts:
+    get:
+      summary: Get all posts
+      parameters:
+        - in: query
+          name: page
+          schema:
+            type: integer
+            default: 1
+          description: Page number for pagination
+        - in: query
+          name: limit
+          schema:
+            type: integer
+            default: 10
+          description: Number of items per page
+        - in: query
+          name: sortBy
+          schema:
+            type: string
+            default: createdAt
+          description: Field to sort by
+        - in: query
+          name: sortOrder
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+          description: Sort order
+        - in: query
+          name: keyword
+          schema:
+            type: string
+          description: Search keyword for title or description
+        - in: query
+          name: tag
+          schema:
+            type: string
+          description: Filter by tag name
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  posts:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        title:
+                          type: string
+                        description:
+                          type: string
+                        image:
+                          type: string
+                        tags:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              _id:
+                                type: string
+                              name:
+                                type: string
+                  totalPages:
+                    type: integer
+                  currentPage:
+                    type: integer
+        '400':
+          description: Bad request
+        '500':
+          description: Server error
+    post:
+      summary: Create a new post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - title
+                - description
+                - image
+                - tags
+              properties:
+                title:
+                  type: string
+                  example: "My Blog Post"
+                description:
+                  type: string
+                  example: "This is my blog post content"
+                image:
+                  type: string
+                  format: base64
+                  example: "data:image/jpeg;base64,/9j/4AAQSkZJRg..."
+                tags:
+                  type: array
+                  items:
+                    type: string
+                  example: ["technology", "programming"]
+      responses:
+        '201':
+          description: Post created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  title:
+                    type: string
+                  description:
+                    type: string
+                  image:
+                    type: string
+                  tags:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        name:
+                          type: string
+        '400':
+          description: Bad request
+        '500':
+          description: Server error
