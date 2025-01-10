@@ -1,77 +1,91 @@
 {
-  "info": {
-    "name": "Blog API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
-  },
-  "item": [
-    {
-      "name": "Get Posts",
-      "request": {
-        "method": "GET",
-        "url": {
-          "raw": "{{baseUrl}}/api/posts?page=1&limit=10&sortBy=createdAt&sortOrder=desc&keyword=test&tag=technology",
-          "host": ["{{baseUrl}}"],
-          "path": ["api", "posts"],
-          "query": [
-            {
-              "key": "page",
-              "value": "1"
-            },
-            {
-              "key": "limit",
-              "value": "10"
-            },
-            {
-              "key": "sortBy",
-              "value": "createdAt"
-            },
-            {
-              "key": "sortOrder",
-              "value": "desc"
-            },
-            {
-              "key": "keyword",
-              "value": "test"
-            },
-            {
-              "key": "tag",
-              "value": "technology"
-            }
-          ]
-        }
-      }
-    },
-    {
-      "name": "Create Post",
-      "request": {
-        "method": "POST",
-        "url": {
-          "raw": "{{baseUrl}}/api/posts",
-          "host": ["{{baseUrl}}"],
-          "path": ["api", "posts"]
-        },
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
-          }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": {
-            "title": "Test Post",
-            "description": "This is a test post",
-            "image": "data:image/jpeg;base64,/9j/4AAQSkZJRg...",
-            "tags": ["technology", "programming"]
-          }
-        }
-      }
-    }
-  ],
-  "variable": [
-    {
-      "key": "baseUrl",
-      "value": "http://localhost:3000"
-    }
-  ]
+	"info": {
+		"_postman_id": "2e15a1a9-db6e-435b-a2ec-db1526591cff",
+		"name": "Blog API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13944865",
+		"_collection_link": "https://avrutapi.postman.co/workspace/Inventory~c4c38396-7b22-4b0a-b5d1-d9fe6dd87ed1/collection/13944865-2e15a1a9-db6e-435b-a2ec-db1526591cff?action=share&source=collection_link&creator=13944865"
+	},
+	"item": [
+		{
+			"name": "Get Posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://node-post-ezm0.onrender.com/api/posts?page=1&limit=10&sortBy=createdAt&sortOrder=desc&keyword=test&tag=technology",
+					"protocol": "https",
+					"host": [
+						"node-post-ezm0",
+						"onrender",
+						"com"
+					],
+					"path": [
+						"api",
+						"posts"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "10"
+						},
+						{
+							"key": "sortBy",
+							"value": "createdAt"
+						},
+						{
+							"key": "sortOrder",
+							"value": "desc"
+						},
+						{
+							"key": "keyword",
+							"value": "test"
+						},
+						{
+							"key": "tag",
+							"value": "technology"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n            \"title\": \"Test Post\",\n            \"description\": \"This is a test post\",\n            \"image\": \"data:image/jpeg;base64,/9j/4AAQSkZJRg...\",\n            \"tags\": [\"technology\", \"programming\"]\n          }"
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/posts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"posts"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000"
+		}
+	]
 }
